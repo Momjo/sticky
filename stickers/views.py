@@ -32,8 +32,11 @@ def user_create(request):
     return home()
 
 def sticker_create(request):
+    if not request.user.is_authenticated():
+        raise Http404
+
     Sticker.objects.create(
-        author=User.objects.get(id=1),
+        author=request.user,
         title=request.POST.get('title'),
         description=request.POST.get('description'),
         color=request.POST.get('color')

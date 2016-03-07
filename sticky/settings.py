@@ -26,18 +26,19 @@ SECRET_KEY = 'im^ku28uvdjamxx857qdzqy9b+04u11nfwl$a916a&6z2e63=8'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'stickers.User'
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'stickers.apps.StickersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'stickers',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,4 +121,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-AUTH_USER_MODEL = 'stickers.User'
