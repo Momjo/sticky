@@ -49,6 +49,9 @@ class User(AbstractBaseUser):
         auto_now_add=True,
         editable=False
     )
+    is_staff = models.BooleanField(
+        default=False
+    )
 
     objects = UserManager()
 
