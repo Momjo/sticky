@@ -17,13 +17,9 @@ class IndexView(generic.ListView):
         return Sticker.objects.order_by('-date')[:50]
 
 
-def home():
-    return HttpResponseRedirect(reverse('stickers:index'))
-
-
 def logout_view(request):
     logout(request)
-    return home()
+    return HttpResponseRedirect(reverse('stickers:index'))
 
 def user_create(request):
     User.objects.create_user(
@@ -31,7 +27,7 @@ def user_create(request):
         password=request.POST.get('password'),
         email=request.POST.get('email'),
     )
-    return home()
+    return HttpResponseRedirect(reverse('stickers:index'))
 
 @login_required
 def sticker_create(request):
@@ -41,7 +37,7 @@ def sticker_create(request):
         description=request.POST.get('description'),
         color=request.POST.get('color')
     )
-    return home()
+    return HttpResponseRedirect(reverse('stickers:index'))
 
 
 class StickerDelete(DeleteView):
@@ -58,10 +54,3 @@ class StickerDelete(DeleteView):
         if obj.author != self.request.user:
             raise Http404
 
-        return obj
-
-
-def sticker_delete(request):
-    sticker = Sticker.objects.get(id=request.POST.get('id'))
-    sticker.delete()
-    return home()
