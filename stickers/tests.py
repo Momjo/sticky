@@ -22,7 +22,7 @@ class TestViews(TestCase):
             data=attrs
         )
 
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 302)
 
         response = self.client.post(
             path=reverse('stickers:login'),

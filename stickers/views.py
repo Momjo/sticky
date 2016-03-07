@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -31,10 +33,8 @@ def user_create(request):
     )
     return home()
 
+@login_required
 def sticker_create(request):
-    if not request.user.is_authenticated():
-        raise Http404
-
     Sticker.objects.create(
         author=request.user,
         title=request.POST.get('title'),
