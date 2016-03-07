@@ -17,6 +17,7 @@ class IndexView(generic.ListView):
         return Sticker.objects.order_by('-date')[:50]
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('stickers:index'))
@@ -54,3 +55,4 @@ class StickerDelete(DeleteView):
         if obj.author != self.request.user:
             raise Http404
 
+        return obj
