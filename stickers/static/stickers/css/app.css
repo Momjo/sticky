@@ -16,11 +16,12 @@ body::-webkit-scrollbar-thumb {
     background-color: #2C3E50;
 }
 
-audio {
+form > * {
+    margin-bottom: 10px;
 }
 
-#page {
-    height: 2500px;
+section.page {
+    height: 1500px;
 }
 
 .message-container{
@@ -44,42 +45,25 @@ audio {
 .sticker {
     min-width: 50px;
     display: table;
-    position: relative;
+    position: absolute;
     opacity: 0;
     -webkit-border-radius: 0;
             border-radius: 0;
-    -webkit-transition: box-shadow 0.3s, transform 0.3s ease-in-out;
-            transition: box-shadow 0.3s, transform 0.3s ease-in-out;
+    -webkit-transition: box-shadow 0.3s, transform 0.3s;
+            transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .sticker.moving {
+    cursor: move;
     border-style: 2px dashed;
     z-index: 1000;
     -webkit-box-shadow: -8px 8px 30px rgba(44, 62, 80, 0.3);
             box-shadow: -8px 8px 30px rgba(44, 62, 80, 0.3);
-    -webkit-transform: perspective(900px) rotateY(35deg);
-            transform: perspective(900px) rotateY(35deg);
+    -webkit-transform: perspective(900px) rotateY(30deg);
+            transform: perspective(900px) rotateY(30deg);
 }
 
-.sticker > .panel-heading {
-    -webkit-border-radius: 0;
-            border-radius: 0;
-}
-
-.sticker > .panel-heading:ACTIVE {
-    cursor: move;
-}
-
-.sticker-close {
-    width: 30px;
-    height: 31px;
-    margin: -26px;
-    margin-right: -8px;
-    border-color: rgba(0, 0, 0, 0.3);
-    font-size: 20px;
-    opacity: 0.5;
-    padding: 0;
-    line-height: 1px;
-    -webkit-border-radius: 100%;
-            border-radius: 100%;
+.sticker > .header {
+    -webkit-border-radius: 0 !important;
+            border-radius: 0 !important;
 }
