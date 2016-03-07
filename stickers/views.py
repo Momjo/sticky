@@ -1,11 +1,8 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.views import generic
-from django.views.generic.edit import CreateView
-from django.utils import timezone
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.views.generic.edit import DeleteView
+from django.contrib.auth import logout
 
 from stickers.models import User, Sticker
 
@@ -21,13 +18,6 @@ class IndexView(generic.ListView):
 def home():
     return HttpResponseRedirect(reverse('stickers:index'))
 
-def login_view(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        login(request, user)
-    return home()
 
 def logout_view(request):
     logout(request)
@@ -49,6 +39,24 @@ def sticker_create(request):
         color=request.POST.get('color')
     )
     return home()
+
+
+class StickerDelete(DeleteView):
+    model = Sticker
+    success_url = ('sticker:index')
+
+    def get_object(self, queryset=None):
+        """
+        :rtype: Sticker
+        """
+        obj = super(StickerDelete, self).get_object(queryset)
+        """:type obj: Sticker"""
+
+        if obj.author != self.request.user:
+            raise Http404
+
+        return obj
+
 
 def sticker_delete(request):
     sticker = Sticker.objects.get(id=request.POST.get('id'))

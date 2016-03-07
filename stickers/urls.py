@@ -1,17 +1,20 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
 
 from stickers import views
-
+from stickers.decorators import redirect_if_logged_in
 
 app_name = 'stickers'
 urlpatterns = [
     url(r'^$',          views.IndexView.as_view(), name='index'),
-    url(r'^login/$',    views.login_view,          name='login'),
+    url(
+        r'^login/$',
+        redirect_if_logged_in(auth_views.login),
+        {'template_name': 'stickers/index.html'},
+        name='login'
+    ),
     url(r'^logout/$',   views.logout_view,         name='logout'),
     url(r'^register/$', views.user_create,         name='register'),
     url(r'^create/$',   views.sticker_create,      name='create'),
-    url(r'^delete/$',   views.sticker_delete,      name='delete'),
+    url(r'^delete/(?P<pk>[0-9]+)/$',   views.StickerDelete.as_view(),      name='delete'),
 ]
