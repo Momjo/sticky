@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-
+from django.utils.encoding import python_2_unicode_compatible
 
 
 class UserManager(BaseUserManager):
@@ -31,6 +31,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+@python_2_unicode_compatible
 class User(AbstractBaseUser):
 
     email = models.EmailField(
@@ -67,7 +68,7 @@ class User(AbstractBaseUser):
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.username
 
 
