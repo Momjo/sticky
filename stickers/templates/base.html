@@ -5,14 +5,14 @@
         <meta charset="utf-8">
         <title>Sticky</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
         
         <link rel="stylesheet" href="{% static 'stickers/css/bootstrap.css' %}" media="screen">
         <link rel="stylesheet" href="{% static 'stickers/css/app.css' %}" media="screen">
     </head>
 
     <body onload="StickerInit()">
-        <div class="navbar navbar-default navbar-fixed-top">
+        <section class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <a href="{% url 'stickers:index' %}" class="navbar-brand">Sticky</a>
@@ -30,13 +30,10 @@
                                 <ul class="dropdown-menu" style="min-width: 250px">
                                     <form method="post" action="{% url 'stickers:create' %}" style="padding: 10px">
                                         {% csrf_token %}
-                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required/>
-                                        <br>
-                                        <input class="form-control input-sm" placeholder="Color..." name="color" type="text" value="lightgrey" />
-                                        <br>
+                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required>
+                                        <input class="form-control input-sm" placeholder="Color..." name="color" type="text" value="lightgrey">
                                         <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text"></textarea>
-                                        <br>
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Stick"/>
+                                        <input type="submit" class="btn btn-primary btn-sm" value="Stick">
                                     </form>
                                 </ul>
                             </li>
@@ -49,7 +46,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-header">{{ user.email }}</li>
                                     <br>
-                                    <li><a href="#" onclick="StickerReset()">Reset</a></li>
+                                    <li><a href="#" onclick="return StickerReset()">Reset</a></li>
                                     <li><a href="{% url 'stickers:logout' %}">Logout</a></li>
                                 </ul>
                             </li>
@@ -59,11 +56,9 @@
                                 <ul class="dropdown-menu">
                                     <form method="post" action="{% url 'stickers:login' %}" style="padding: 10px">
                                         {% csrf_token %}
-                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text" />
-                                        <br>
-                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password" />
-                                        <br>
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Login"/>
+                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
+                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
+                                        <input type="submit" class="btn btn-primary btn-sm" value="Login">
                                     </form>
                                 </ul>
                             </li>
@@ -72,13 +67,10 @@
                                 <ul class="dropdown-menu">
                                     <form method="post" action="{% url 'stickers:register' %}" style="padding: 10px">
                                         {% csrf_token %}
-                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text" />
-                                        <br>
-                                        <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email" />
-                                        <br>
-                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password" />
-                                        <br>
-                                        <input type="submit" class="btn btn-success btn-sm" value="Register"/>
+                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
+                                        <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email">
+                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
+                                        <input type="submit" class="btn btn-success btn-sm" value="Register">
                                     </form>
                                 </ul>
                             </li>
@@ -87,29 +79,30 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="message-container">
+        <section class="message-container">
             {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
-                        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <li class="alert alert-{{ message.tags }}">{{ message }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
-        </div>
+        </section>
 
-        <div class="container-fluid" id="page">
+        <section class="page container-fluid">
             {% block content %}{% endblock content %}
-        </div>
+        </section>
 
-        <script src="{% static 'stickers/js/jquery.js' %}"></script>
-        <script src="{% static 'stickers/js/jquery-ui.js' %}"></script>
-        <script src="{% static 'stickers/js/jquery-scroll.js' %}"></script>
-        <script src="{% static 'stickers/js/bootstrap.js' %}"></script>
-        <script src="{% static 'stickers/js/app.js' %}"></script>
-
-        <audio><source src="{% static 'stickers/aud/move.mp3' %}"  type="audio/mpeg"></audio>
-        <audio><source src="{% static 'stickers/aud/place.mp3' %}" type="audio/mpeg"></audio>
+        <section>
+            <script src="{% static 'stickers/js/jquery.js' %}"></script>
+            <script src="{% static 'stickers/js/jquery-ui.js' %}"></script>
+            <script src="{% static 'stickers/js/jquery-scroll.js' %}"></script>
+            <script src="{% static 'stickers/js/bootstrap.js' %}"></script>
+            <script src="{% static 'stickers/js/app.js' %}"></script>
+            <audio volume="1"><source src="{% static 'stickers/aud/move.mp3' %}"  type="audio/mpeg"></audio>
+            <audio volume="1"><source src="{% static 'stickers/aud/place.mp3' %}" type="audio/mpeg"></audio>
+        </section>
     </body>
 </html>
