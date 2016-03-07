@@ -2,7 +2,6 @@ from django.conf.urls import patterns, url
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from stickers.decorators import redirect_if_logged_in
 
 from stickers import views
 
