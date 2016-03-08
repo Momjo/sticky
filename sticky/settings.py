@@ -72,6 +72,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sticky.wsgi.application'
 
+# Login urls
+
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
