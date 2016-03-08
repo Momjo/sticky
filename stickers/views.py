@@ -14,7 +14,10 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_stickers'
 
     def get_queryset(self):
-        return Sticker.objects.order_by('-date')[:50]
+        if self.request.user.is_authenticated():
+            return Sticker.objects.order_by('-date')[:50]
+
+        return []
 
 
 @login_required
