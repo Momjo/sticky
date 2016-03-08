@@ -1,3 +1,5 @@
+/* Global */
+
 body {
     padding-top: 85px;
     cursor: default;
@@ -16,27 +18,12 @@ body::-webkit-scrollbar-thumb {
     background-color: #2C3E50;
 }
 
-form > * {
+form * {
     margin-bottom: 30px;
 }
 
-form > input.input-sm {
+form input.input-sm {
     margin-bottom: 10px;
-}
-
-.message-container{
-    position: fixed;
-    top: 60px;
-    left: -40px;
-}
-
-.message-container > ul > li {
-    border-radius: 0 0 30px 0;
-    padding-right: 30px;
-}
-
-.sticker-container {
-    height: 1500px;
 }
 
 .sticker, a, button, ul {
@@ -46,15 +33,31 @@ form > input.input-sm {
     -ms-user-select: none;
 }
 
-.sticker {
-    min-width: 50px;
-    display: table;
-    position: absolute;
-    opacity: 0;
-    -webkit-border-radius: 0;
-            border-radius: 0;
-    -webkit-transition: box-shadow 0.3s, transform 0.3s;
-            transition: box-shadow 0.3s, transform 0.3s;
+/* Message */
+
+.message-container{
+    position: fixed;
+    top: 60px;
+    left: -40px;
+}
+
+.message-container ul li {
+    border-radius: 0 0 30px 0;
+    padding-right: 30px;
+}
+
+/* Sticker */
+
+.sticker-container {
+    height: 1500px;
+}
+
+.sticker-empty {
+    display: none !important;
+}
+
+.sticker[no-description] .description {
+    display: none !important;
 }
 
 .sticker.moving {
@@ -67,7 +70,17 @@ form > input.input-sm {
             transform: perspective(900px) rotateY(30deg);
 }
 
-.sticker > .header {
+.sticker {
+    min-width: 50px;
+    display: table;
+    position: absolute;
+    opacity: 0;
+    -webkit-border-radius: 0;
+            border-radius: 0;
+    -webkit-transition: box-shadow 0.3s, transform 0.3s;
+            transition: box-shadow 0.3s, transform 0.3s;
+}
+.sticker .title {
     -webkit-border-radius: 0 !important;
             border-radius: 0 !important;
 }
