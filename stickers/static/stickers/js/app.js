@@ -182,6 +182,31 @@ function Register(event, form, token, url, next) {
     });
 }
 
+function Create(event, form, token, url) {
+    
+    event.preventDefault();
+
+    var title       = $(form).children('[name=title]').val();
+    var color       = $(form).children('[name=color]').val();
+    var description = $(form).children('[name=description]').val();
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            'title': title,
+            'color': color,
+            'description': description,
+            'csrfmiddlewaretoken': token
+        },
+        success: function(result) {
+
+            StickerCreate(result, title, description, color);
+        }
+    });
+}
+
 // Other Functions
 
 function Random(min, max) {
