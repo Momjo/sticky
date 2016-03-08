@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import DeleteView
 from django.contrib.auth import logout
+from django.utils.decorators import method_decorator
 
 from stickers.models import User, Sticker
 
@@ -49,6 +50,10 @@ def sticker_create(request):
 class StickerDelete(DeleteView):
     model = Sticker
     success_url = ('sticker:index')
+
+    @method_decorator(login_required)
+    def dispatch(self,  request, *args, **kwargs):
+        return super(StickerDelete, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
         """
