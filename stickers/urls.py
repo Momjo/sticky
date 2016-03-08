@@ -10,7 +10,7 @@ app_name = 'stickers'
 urlpatterns = [
     url(
         r'^$',
-        views.IndexView.as_view,
+        views.IndexView.as_view(),
         name='index'
     ),
     url(
