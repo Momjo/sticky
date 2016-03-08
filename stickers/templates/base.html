@@ -42,7 +42,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    {{ user.username }} <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-header">{{ user.email }}</li>
                                     <br>
@@ -52,10 +54,11 @@
                             </li>
                         {% else %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Login <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <form method="post" action="{% url 'stickers:login' %}" style="padding: 10px">
-                                        {% csrf_token %}
+                                    <form onsubmit="Login(event, this, '{{ csrf_token }}', '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Login">
@@ -63,7 +66,9 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Register <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <form method="post" action="{% url 'stickers:register' %}" style="padding: 10px">
                                         {% csrf_token %}
@@ -75,7 +80,6 @@
                                 </ul>
                             </li>
                         {% endif %}
-
                     </ul>
                 </div>
             </div>

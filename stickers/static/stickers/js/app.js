@@ -2,7 +2,7 @@
 
 sticker = {};
 
-// Functions
+// Sticky Functions
 
 function StickerInit() {
 
@@ -94,6 +94,33 @@ function StickerReset() {
     StickerInit();
     return false;
 }
+
+// Ajax Functions
+
+function Login(event, form, token, url, next) {
+    
+    event.preventDefault();
+
+    var username  = $(form).children('[name=username]').val();
+    var password  = $(form).children('[name=password]').val();
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            'username': username,
+            'password': password,
+            'next': next,
+            'csrfmiddlewaretoken': token
+        },
+        success: function() {
+
+            location.reload();
+        }
+    });
+}
+
+// Other Functions
 
 function Random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
