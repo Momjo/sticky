@@ -3,45 +3,52 @@
 
     {% if user.is_authenticated %}
 
-        {% if latest_stickers %}
+        <div class="sticker-container" style="display: none">
 
-            <div class="sticker-container">
+            {% if latest_stickers %}
 
                 {% for sticker in latest_stickers %}
 
                     <div class="sticker-outer" style="padding: 10px;">
-                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
 
-                            <div class="header panel-heading">
+                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" {% if not sticker.description %}no-description{% endif %} title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
+
+                            <div class="title panel-heading">
                                 {{ sticker.title }} 
                             </div>
                             
-                            {% if sticker.description %}
+                            <div class="description panel-body">
+                                {{ sticker.description | linebreaksbr }}
+                            </div>
 
-                                <div class="panel-body">
-                                    {{ sticker.description | linebreaksbr }}
-                                </div>
-
-                            {% endif %}
                         </div>
+
                     </div>
 
                 {% endfor %}
 
+            {% endif %}
+
+        </div>
+
+        <div class="oh-no-stickers text-center" style="margin-top: 40px; display: none">
+            <strong>No Stickers</strong>
+            <h1 style="font-size: 10em">:-(</h1>
+        </div>
+
+
+        {# Empty Sticker #}
+
+        <div class="sticker-empty sticker-outer" style="padding: 10px;" style="display: none">
+            <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" no-description title="By {{ user.username }}">
+                <div class="title panel-heading"></div>
+                <div class="description panel-body"></div>
             </div>
-
-        {% else %}
-
-            <div class="text-center" style="margin-top: 40px">
-                <strong>No Stickers</strong>
-                <h1 style="font-size: 10em">:-(</h1>
-            </div>
-
-        {% endif %}
+        </div>
 
     {% else %}
 
-            <div class="container">
+        <div class="container">
 
             <div class="col-md-6">
 
