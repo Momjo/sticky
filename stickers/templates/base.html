@@ -26,10 +26,9 @@
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add <span class="caret"></span></a>
+                                <a href="#" class="dropdown-create dropdown-toggle" data-toggle="dropdown">Add <span class="caret"></span></a>
                                 <ul class="dropdown-menu" style="min-width: 250px">
-                                    <form method="post" action="{% url 'stickers:create' %}" style="padding: 10px">
-                                        {% csrf_token %}
+                                    <form onsubmit="Create(event, this, '{{ csrf_token }}', '{% url 'stickers:create' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required>
                                         <input class="form-control input-sm" placeholder="Color..." name="color" type="text" value="lightgrey">
                                         <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text"></textarea>
