@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import DeleteView
@@ -38,13 +38,15 @@ def user_create(request):
 
 @login_required
 def sticker_create(request):
-    Sticker.objects.create(
+    sticker = Sticker.objects.create(
         author=request.user,
         title=request.POST.get('title'),
         description=request.POST.get('description'),
         color=request.POST.get('color')
     )
-    return HttpResponseRedirect(reverse('stickers:index'))
+    if sticker.pk is not None:
+        return HttpResponse(sticker.pk)
+    return Http404
 
 
 class StickerDelete(DeleteView):
