@@ -3,9 +3,7 @@
     {% if latest_stickers %}
         {% for sticker in latest_stickers %}
             <div class="sticker-outer" style="padding: 10px;">
-                <div class="sticker panel panel-default panel-primary" 
-                     data-id="{{ sticker.id }}" 
-                     title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
+                <div class="sticker panel panel-default panel-primary" data-id="{{ sticker.id }}" title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
 
                     <div class="header panel-heading">
                         {{ sticker.title }} 
