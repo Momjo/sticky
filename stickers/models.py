@@ -30,6 +30,7 @@ class UserManager(BaseUserManager):
             username,
             password
         )
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -70,6 +71,18 @@ class User(AbstractBaseUser):
 
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    def get_short_name(self):
+        return self
+
+    def get_full_name(self):
+        return self.get_short_name()
 
     def __str__(self):
         return self.username
