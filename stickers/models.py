@@ -10,10 +10,12 @@ class UserManager(BaseUserManager):
     def create_user(self, email, username, password):
 
         if not email or not username or not password:
-            raise ValueError('User must have a valid email, username and email.')
+            raise ValueError(
+                'User must have a valid email, username and email.'
+            )
 
         user = self.model(
-            email=UserManager.normalize_email(email), 
+            email=UserManager.normalize_email(email),
             username=username
         )
         user.set_password(password)
@@ -30,6 +32,7 @@ class UserManager(BaseUserManager):
         )
         user.save(using=self._db)
         return user
+
 
 @python_2_unicode_compatible
 class User(AbstractBaseUser):
@@ -72,12 +75,11 @@ class User(AbstractBaseUser):
         return self.username
 
 
-
 class Sticker(models.Model):
-    author      = models.ForeignKey(User, on_delete=models.CASCADE)
-    title       = models.CharField(max_length=200)
-    color       = models.CharField(max_length=50, default='lightgrey')
-    date        = models.DateTimeField(verbose_name='date created', auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    color = models.CharField(max_length=50, default='lightgrey')
+    date = models.DateTimeField(verbose_name='date created', auto_now_add=True)
     description = models.TextField()
 
     def __unicode__(self):

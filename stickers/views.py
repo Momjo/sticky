@@ -22,6 +22,7 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('stickers:index'))
 
+
 def user_create(request):
     User.objects.create_user(
         username=request.POST.get('username'),
@@ -29,6 +30,7 @@ def user_create(request):
         email=request.POST.get('email'),
     )
     return HttpResponseRedirect(reverse('stickers:index'))
+
 
 @login_required
 def sticker_create(request):

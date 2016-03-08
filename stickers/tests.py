@@ -5,7 +5,7 @@ from stickers.models import User, Sticker
 
 class TestViews(TestCase):
     def test_sticker_create(self):
-        alireza = User.objects.create_user(
+        User.objects.create_user(
             email='e@mail.com',
             username='alireza',
             password='password88'

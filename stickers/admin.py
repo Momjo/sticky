@@ -9,6 +9,5 @@ class StickerAdmin(admin.ModelAdmin):
     list_filter = ['date', 'color']
 
 
-
 admin.site.register(User)
 admin.site.register(Sticker, StickerAdmin)
