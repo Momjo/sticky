@@ -130,7 +130,40 @@ function StickerReset() {
     return false;
 }
 
-// Ajax Functions
+function StickerCreate(id, title, description, color) {
+
+    $('.dropdown-create[aria-expanded=true]').dropdown('toggle');
+
+    $('.sticker-empty > div > .title').text(title);
+    $('.sticker-empty > div > .description').html(description.replace(/\n/g, "<br>"));
+    $('.sticker-empty > div').removeAttr('no-description');
+    $('.sticker-empty > div').attr('data-id', id);
+    $('.sticker-empty > div').css('left', 100);
+    $('.sticker-empty > div').css('top', 0);
+
+    if (description.length < 1)
+        $('.sticker-empty > div').attr('no-description', ' ');
+
+    var new_el = $('.sticker-empty').clone().prependTo('.sticker-container');
+    new_el.removeClass('sticker-empty').children().addClass('sticker');
+
+    $('.sticker-empty > div').attr('data-id', 0);
+
+    StickerNothing();
+    StickerPosition(new_el.children());
+    StickerDraggable();
+}
+
+function StickerPosition(el) {
+    
+    $(el).animate(
+        {'left': Random(0, $('.page').width()-$(el).width()),
+         'top':  Random(85, $(window).height()-$(el).height())
+        }, 1000, function() { StickerUpdate(el) }
+    );
+}
+
+// Base Ajax Functions
 
 function Login(event, form, token, url, next) {
     
