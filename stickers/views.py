@@ -16,8 +16,8 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated():
-            return Sticker.objects.order_by('-date')[:50]
-
+            return Sticker.objects.filter(
+                author=self.request.user).order_by('-date')[:50]
         return []
 
 
