@@ -17,11 +17,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 form > * {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
-section.page {
-    height: 1500px;
+form > input.input-sm {
+    margin-bottom: 10px;
 }
 
 .message-container{
@@ -33,6 +33,10 @@ section.page {
 .message-container > ul > li {
     border-radius: 0 0 30px 0;
     padding-right: 30px;
+}
+
+.sticker-container {
+    height: 1500px;
 }
 
 .sticker, a, button, ul {

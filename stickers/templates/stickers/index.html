@@ -1,27 +1,87 @@
 {% extends "base.html" %}
 {% block content %}
-    {% if latest_stickers %}
-        {% for sticker in latest_stickers %}
-            <div class="sticker-outer" style="padding: 10px;">
-                <div class="sticker panel panel-default panel-primary" data-id="{{ sticker.id }}" title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
 
-                    <div class="header panel-heading">
-                        {{ sticker.title }} 
-                    </div>
-                    
-                    {% if sticker.description %}
-                        <div class="panel-body">
-                            {{ sticker.description | linebreaksbr }}
+    {% if user.is_authenticated %}
+
+        {% if latest_stickers %}
+
+            <div class="sticker-container">
+
+                {% for sticker in latest_stickers %}
+
+                    <div class="sticker-outer" style="padding: 10px;">
+                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
+
+                            <div class="header panel-heading">
+                                {{ sticker.title }} 
+                            </div>
+                            
+                            {% if sticker.description %}
+
+                                <div class="panel-body">
+                                    {{ sticker.description | linebreaksbr }}
+                                </div>
+
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
+                    </div>
+
+                {% endfor %}
+
             </div>
-        {% endfor %}
+
+        {% else %}
+
+            <div class="text-center" style="margin-top: 40px">
+                <strong>No Stickers</strong>
+                <h1 style="font-size: 10em">:-(</h1>
+            </div>
+
+        {% endif %}
+
     {% else %}
-        <br><br>
-        <div class="text-center">
-            <strong>No Stickers</strong>
-            <h1 style="font-size: 10em">:-(</h1>
+
+            <div class="container">
+
+            <div class="col-md-6">
+
+                <div class="panel panel-primary">
+                    
+                    <div class="panel-heading" style="font-size: larger">Login</div>
+
+                    <div class="panel-body" style="padding: 3em">
+                        <form class="login" onsubmit="Login(event, this, '{{ csrf_token }}', '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
+                            <input class="form-control" placeholder="Username..." name="username" type="text">
+                            <input class="form-control" placeholder="Password..." name="password" type="password">
+                            <input type="submit" class="btn btn-primary" value="Login">
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                
+                <div class="panel panel-success">
+                    
+                    <div class="panel-heading" style="font-size: larger">Register</div>
+
+                    <div class="panel-body" style="padding: 3em">
+                        <form onsubmit="Register(event, this, '{{ csrf_token }}', '{% url 'stickers:register' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
+                            <input class="form-control" placeholder="Username..." name="username" type="text">
+                            <input class="form-control" placeholder="Email..."    name="email"    type="email">
+                            <input class="form-control" placeholder="Password..." name="password" type="password">
+                            <input type="submit" class="btn btn-success" value="Register">
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     {% endif %}
+
 {% endblock %}
