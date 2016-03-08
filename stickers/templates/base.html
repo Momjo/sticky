@@ -58,7 +58,7 @@
                                     Login <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form onsubmit="Login(event, this, '{{ csrf_token }}', '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
+                                    <form class="login" onsubmit="Login(event, this, '{{ csrf_token }}', '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Login">
@@ -70,8 +70,7 @@
                                     Register <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form method="post" action="{% url 'stickers:register' %}" style="padding: 10px">
-                                        {% csrf_token %}
+                                    <form onsubmit="Register(event, this, '{{ csrf_token }}', '{% url 'stickers:register' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
                                         <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password">

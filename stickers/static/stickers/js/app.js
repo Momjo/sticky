@@ -120,6 +120,27 @@ function Login(event, form, token, url, next) {
     });
 }
 
+function Register(event, form, token, url, next) {
+    
+    event.preventDefault();
+
+    var email     = $(form).children('[name=email]').val();
+    var username  = $(form).children('[name=username]').val();
+    var password  = $(form).children('[name=password]').val();
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            'email':    email,
+            'username': username,
+            'password': password,
+            'next': next,
+            'csrfmiddlewaretoken': token
+        },
+    });
+}
+
 // Other Functions
 
 function Random(min, max) {
