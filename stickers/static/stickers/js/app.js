@@ -138,6 +138,12 @@ function Register(event, form, token, url, next) {
             'next': next,
             'csrfmiddlewaretoken': token
         },
+        success: function() {
+
+            $('form.login').children('[name=username]').val(username);
+            $('form.login').children('[name=password]').val(password);
+            $('form.login').submit();
+        }
     });
 }
 
