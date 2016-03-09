@@ -98,6 +98,16 @@
         </section>
 
         <section>
+            <script>
+                django = {
+                    'url_register': '{% url 'stickers:register' %}',
+                    'url_login':    '{% url 'stickers:login' %}',
+                    'url_create':   '{% url 'stickers:create' %}',
+                    'url_delete':   '{% url 'stickers:delete' 0 %}',
+                    'csrf_token': '{{ csrf_token }}',
+                }
+            </script>
+
             <script src="{% static 'stickers/js/jquery.js' %}"></script>
             <script src="{% static 'stickers/js/jquery-ui.js' %}"></script>
             <script src="{% static 'stickers/js/jquery-scroll.js' %}"></script>
