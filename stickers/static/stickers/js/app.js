@@ -225,6 +225,11 @@ function Register(event, form, token, url, next) {
             'csrfmiddlewaretoken': token
         },
         success: function() {
+// Init
+
+$(document).ready(Sticker.init());
+
+// Events
 
             $('form.login').children('[name=username]').val(username);
             $('form.login').children('[name=password]').val(password);
