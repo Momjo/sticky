@@ -231,12 +231,16 @@ $(document).ready(Sticker.init());
 
 // Events
 
-            $('form.login').children('[name=username]').val(username);
-            $('form.login').children('[name=password]').val(password);
-            $('form.login').submit();
+$(".sticker-container").on("mouseenter mouseleave dblclick", ".sticker", function(e) {
+
+    switch (e.type)
+    {
+        case 'mouseenter': {
+
+            $(this).addClass("hover");
+            break;
         }
-    });
-}
+        case 'mouseleave': {
 
 function Create(event, form, token, url) {
     
@@ -257,24 +261,20 @@ function Create(event, form, token, url) {
             'csrfmiddlewaretoken': token
         },
         success: function(result) {
+            $(this).removeClass("hover");
+            break;
+        }
+        case 'dblclick': {
 
             StickerCreate(result, title, description, color);
+            Sticker.Ajax.delete(Sticker.id(this));
+            break;
         }
     });
 }
 
-// Other Functions
+// Other
 
 function Random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-// Events
-
-$(".sticker")
-    .mouseenter(function() {
-        $(this).addClass("hover");
-    })
-    .mouseleave(function() {
-        $(this).removeClass("hover");
-    })
