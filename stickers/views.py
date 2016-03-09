@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import logout
 from django.utils.decorators import method_decorator
 
@@ -51,18 +52,14 @@ def sticker_create(request):
 
 class StickerDelete(DeleteView):
     model = Sticker
-    success_url = ('sticker:index')
+    success_url = reverse_lazy('stickers:index')
 
     @method_decorator(login_required)
     def dispatch(self,  request, *args, **kwargs):
         return super(StickerDelete, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        """
-        :rtype: Sticker
-        """
         obj = super(StickerDelete, self).get_object(queryset)
-        """:type obj: Sticker"""
 
         if obj.author != self.request.user:
             raise Http404
