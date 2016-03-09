@@ -26,12 +26,12 @@
                     <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-create dropdown-toggle" data-toggle="dropdown">Add <span class="caret"></span></a>
+                                <a href="#" class="dropdown-create dropdown-toggle" data-toggle="dropdown" style="font-size: 2.6em">&#43;</a>
                                 <ul class="dropdown-menu" style="min-width: 250px">
-                                    <form onsubmit="Create(event, this, '{{ csrf_token }}', '{% url 'stickers:create' %}')" style="padding: 10px">
-                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required>
+                                    <form onsubmit="Sticker.Ajax.create(event, this)" style="padding: 10px">
+                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required autocomplete="off">
                                         <input class="form-control input-sm" placeholder="Color..." name="color" type="text" value="lightgrey">
-                                        <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text"></textarea>
+                                        <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text" autocomplete="off"></textarea>
                                         <input type="submit" class="btn btn-primary btn-sm" value="Stick">
                                     </form>
                                 </ul>
@@ -47,7 +47,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-header">{{ user.email }}</li>
                                     <br>
-                                    <li><a href="#" onclick="return StickerReset()">Reset</a></li>
+                                    <li><a href="#" onclick="return Sticker.reset()">Reset</a></li>
                                     <li><a href="{% url 'stickers:logout' %}">Logout</a></li>
                                 </ul>
                             </li>
@@ -57,7 +57,7 @@
                                     Login <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form class="login" onsubmit="Login(event, this, '{{ csrf_token }}', '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
+                                    <form class="login" onsubmit="Sticker.Ajax.cogin(event, this, '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Login">
@@ -69,10 +69,10 @@
                                     Register <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form onsubmit="Register(event, this, '{{ csrf_token }}', '{% url 'stickers:register' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
-                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
-                                        <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email">
-                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
+                                    <form onsubmit="Sticker.Ajax.cegister(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
+                                        <input class="form-control input-sm" placeholder="Username..." name="username" type="text" autocomplete="off">
+                                        <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email" autocomplete="off">
+                                        <input class="form-control input-sm" placeholder="Password..." name="password" type="password" autocomplete="off">
                                         <input type="submit" class="btn btn-success btn-sm" value="Register">
                                     </form>
                                 </ul>
@@ -113,6 +113,7 @@
             <script src="{% static 'stickers/js/jquery-scroll.js' %}"></script>
             <script src="{% static 'stickers/js/bootstrap.js' %}"></script>
             <script src="{% static 'stickers/js/app.js' %}"></script>
+
             <audio volume="1"><source src="{% static 'stickers/aud/move.mp3' %}"  type="audio/mpeg"></audio>
             <audio volume="1"><source src="{% static 'stickers/aud/place.mp3' %}" type="audio/mpeg"></audio>
         </section>
