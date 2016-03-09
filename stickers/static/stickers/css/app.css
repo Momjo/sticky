@@ -56,6 +56,10 @@ form input.input-sm {
     display: none !important;
 }
 
+.sticker-outer {
+    padding: 10px;
+}
+
 .sticker[no-description] .description {
     display: none !important;
 }
@@ -80,6 +84,7 @@ form input.input-sm {
     -webkit-transition: box-shadow 0.3s, transform 0.3s;
             transition: box-shadow 0.3s, transform 0.3s;
 }
+
 .sticker .title {
     -webkit-border-radius: 0 !important;
             border-radius: 0 !important;
