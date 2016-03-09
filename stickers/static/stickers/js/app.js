@@ -24,7 +24,24 @@ function StickerInit() {
             // If sticker is set in local storage
             if (localStorage.sticker) {
 
-                sticker = JSON.parse(localStorage.sticker);
+        delete: function(id) {
+            
+            if (!confirm('Delete sticker?'))
+                return false;
+
+            $.ajax({
+                url: django.url_delete.replace('0', id),
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': django.csrf_token
+                },
+                success: function(result) {
+
+                    Sticker.delete(Sticker.el(id));
+                }
+            });
+        },
+    },
 
                 $.each(sticker, function(index, value) {
 
@@ -143,6 +160,7 @@ function StickerCreate(id, title, description, color) {
 
     if (description.length < 1)
         $('.sticker-empty > div').attr('no-description', ' ');
+    delete: function(el) {
 
     var new_el = $('.sticker-empty').clone().prependTo('.sticker-container');
     new_el.removeClass('sticker-empty').children().addClass('sticker');
