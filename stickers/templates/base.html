@@ -18,9 +18,8 @@
         <section class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="{% url 'stickers:index' %}" class="navbar-brand">
-                        <img src="{% static 'stickers/img/favicon.png' %}">
-                        Sticky
+                    <a href="{% url 'stickers:index' %}" class="navbar-brand" title="Sticky">
+                        <img src="{% static 'stickers/img/favicon.png' %}" alt="Sticky">
                     </a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
@@ -38,8 +37,8 @@
                                 <ul class="dropdown-menu" style="min-width: 250px">
                                     <form onsubmit="Sticker.Ajax.create(event, this)" style="padding: 10px">
                                         <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required autocomplete="off">
-                                        <input class="form-control input-sm" placeholder="Color..." name="color" type="text">
                                         <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text" autocomplete="off"></textarea>
+                                        <input class="form-control input-sm" placeholder="Color..." name="color" type="text">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Stick">
                                     </form>
                                 </ul>
@@ -77,7 +76,7 @@
                                     Register <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form onsubmit="Sticker.Ajax.cegister(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
+                                    <form onsubmit="Sticker.Ajax.register(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text" autocomplete="off">
                                         <input class="form-control input-sm" placeholder="Email..."    name="email"    type="email" autocomplete="off">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password" autocomplete="off">
