@@ -90,7 +90,7 @@ form input.input-sm {
     min-width: 50px;
     display: table;
     position: absolute;
-    opacity: 0;
+    border-color: #F7F125;
     -webkit-border-radius: 0;
             border-radius: 0;
     -webkit-transition: box-shadow 0.3s, transform 0.3s;
@@ -98,6 +98,17 @@ form input.input-sm {
 }
 
 .sticker .title {
+    color: rgba(0, 0, 0, 0.7);
+    background-color: #F7F125;
+    border-color: #F7F125;
+    font-family: cursive;
+    font-weight: bold;
     -webkit-border-radius: 0 !important;
             border-radius: 0 !important;
+}
+
+.sticker .description {
+    background: rgba(247, 241, 37, 0.4);
+    color: rgba(0, 0, 0, 0.7);
+    font-family: cursive;
 }
