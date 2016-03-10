@@ -26,6 +26,11 @@ form input.input-sm {
     margin-bottom: 10px;
 }
 
+a {
+    -webkit-transition: color 0.2s, opacity 0.2s ease-in-out;
+            transition: color 0.2s, opacity 0.2s ease-in-out;
+}
+
 .sticker, a, button, ul {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -35,6 +40,16 @@ form input.input-sm {
 
 /* Navbar */
 
+.navbar-brand {
+    opacity: 0.6;
+    margin-right: 20px;
+    color: #F7F125 !important;
+}
+
+.navbar-brand:HOVER {
+    opacity: 1;
+}
+
 .navbar-brand img {
     display: inline-block;
     width: 30px;
@@ -43,6 +58,14 @@ form input.input-sm {
     margin-top: -8px;
     -webkit-border-radius: 2px;
             border-radius: 2px;
+}
+
+.navbar-default .navbar-nav > li > a:HOVER,
+.navbar-default .navbar-nav > li > a:FOCUS,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:HOVER,
+.navbar-default .navbar-nav > .open > a:FOCUS {
+    color: #F7F125;
 }
 
 /* Message */
