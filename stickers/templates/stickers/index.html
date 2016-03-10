@@ -60,7 +60,7 @@
                     <div class="panel-heading" style="font-size: larger">Login</div>
 
                     <div class="panel-body" style="padding: 3em">
-                        <form class="login" onsubmit="Sticker.Ajax.login(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
+                        <form onsubmit="Sticker.Ajax.login(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
                             <input class="form-control" placeholder="Username..." name="username" type="text" autocomplete="off">
                             <input class="form-control" placeholder="Password..." name="password" type="password" autocomplete="off">
                             <input type="submit" class="btn btn-primary" value="Login">
@@ -79,8 +79,8 @@
 
                     <div class="panel-body" style="padding: 3em">
                         <form onsubmit="Sticker.Ajax.register(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
-                            <input class="form-control" placeholder="Username..." name="username" type="text" autocomplete="off">
-                            <input class="form-control" placeholder="Email..."    name="email"    type="email" autocomplete="off">
+                            <input class="form-control" placeholder="Username..." name="username" type="text"     autocomplete="off">
+                            <input class="form-control" placeholder="Email..."    name="email"    type="email"    autocomplete="off">
                             <input class="form-control" placeholder="Password..." name="password" type="password" autocomplete="off">
                             <input type="submit" class="btn btn-success" value="Register">
                         </form>

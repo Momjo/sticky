@@ -36,7 +36,7 @@
                                 </a>
                                 <ul class="dropdown-menu" style="min-width: 250px">
                                     <form onsubmit="Sticker.Ajax.create(event, this)" style="padding: 10px">
-                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" required autocomplete="off">
+                                        <input class="form-control input-sm" min-length="2" placeholder="Title..." name="title" type="text" autocomplete="off">
                                         <textarea class="form-control input-sm" placeholder="Description..." name="description" type="text" autocomplete="off"></textarea>
                                         <input class="form-control input-sm" placeholder="Color..." name="color" type="text">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Stick">
@@ -64,7 +64,7 @@
                                     Login <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <form class="login" onsubmit="Sticker.Ajax.cogin(event, this, '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
+                                    <form class="login" onsubmit="Sticker.Ajax.login(event, this, '{% url 'stickers:login' %}', '{% url 'stickers:index' %}')" style="padding: 10px">
                                         <input class="form-control input-sm" placeholder="Username..." name="username" type="text">
                                         <input class="form-control input-sm" placeholder="Password..." name="password" type="password">
                                         <input type="submit" class="btn btn-primary btn-sm" value="Login">

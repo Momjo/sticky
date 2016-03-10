@@ -15,7 +15,7 @@ def redirect_if_logged_in(method):
     @wraps(method)
     def __wrapped_view(request, *args, **kwargs):
         if request.user.is_authenticated():
-            return redirect(request.user.get_absolute_url())
+            return redirect('/')
 
         return method(request, *args, **kwargs)
 
