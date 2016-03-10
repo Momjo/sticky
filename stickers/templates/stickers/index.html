@@ -12,10 +12,12 @@
 
                     <div class="sticker-outer">
 
-                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" {% if not sticker.description %}no-description{% endif %} title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
+                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" data-color="{{ sticker.color }}" {% if not sticker.description %}no-description{% endif %} {% if not sticker.color %}no-color{% endif %} title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
 
+                            <div class="color" style="background: {{ sticker.color }}"></div>
+                            
                             <div class="title panel-heading">
-                                {{ sticker.title }} 
+                                {{ sticker.title }}
                             </div>
                             
                             <div class="description panel-body">
@@ -40,7 +42,8 @@
         {# Empty Sticker #}
 
         <div class="sticker-empty sticker-outer">
-            <div class="sticker panel panel-primary" data-id="0" no-description title="By ">
+            <div class="sticker panel panel-primary" data-id="0" no-description no-color>
+                <div class="color"></div>
                 <div class="title panel-heading"></div>
                 <div class="description panel-body"></div>
             </div>

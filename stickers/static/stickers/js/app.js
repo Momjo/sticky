@@ -179,16 +179,21 @@ Sticker = {
 
         $('.dropdown-create[aria-expanded=true]').dropdown('toggle');
 
-        $('.sticker-empty > div > .title').text(title);
-        $('.sticker-empty > div > .description').html(description.replace(/\n/g, "<br>"));
+        $('.sticker-empty .title').text(title);
+        $('.sticker-empty .description').html(description.replace(/\n/g, "<br>"));
         $('.sticker-empty > div').removeAttr('no-description');
+        $('.sticker-empty > div').removeAttr('no-color');
         $('.sticker-empty > div').attr('data-id', id);
         $('.sticker-empty > div').attr('title', 'by You');
         $('.sticker-empty > div').css('left', 100);
         $('.sticker-empty > div').css('top', 0);
+        $('.sticker-empty .color').css('background', color);
 
         if (description.length < 1)
             $('.sticker-empty > div').attr('no-description', ' ');
+
+        if (color.length < 1)
+            $('.sticker-empty > div').attr('no-color', ' ');
 
         var new_el = $('.sticker-empty').clone().prependTo('.sticker-container');
         new_el.removeClass('sticker-empty').children().addClass('sticker');
