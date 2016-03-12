@@ -4,6 +4,8 @@
 
     {% if user.is_authenticated %}
 
+        {# Sticker list #}
+
         <div class="sticker-container" style="display: none">
 
             {% if latest_stickers %}
@@ -12,7 +14,7 @@
 
                     <div class="sticker-outer">
 
-                        <div class="sticker panel panel-primary" data-id="{{ sticker.id }}" data-color="{{ sticker.color }}" {% if not sticker.description %}no-description{% endif %} {% if not sticker.color %}no-color{% endif %} title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}">
+                        <div class="sticker panel panel-primary"data-id="{{ sticker.id }}"data-color="{{ sticker.color }}"title="{{ sticker.date | timesince }} ago by {{ sticker.author.username }}" {% if not sticker.description %}no-description{% endif %} {% if not sticker.color %}no-color{% endif %}>
 
                             <div class="color" style="background: {{ sticker.color }}"></div>
                             
@@ -34,12 +36,14 @@
 
         </div>
 
+        {# No sticker message #}
+
         <div class="oh-no-stickers text-center" style="margin-top: 40px; display: none">
             <strong>No Stickers</strong>
             <h1 style="font-size: 10em">&#x1f60f;</h1>
         </div>
 
-        {# Empty Sticker #}
+        {# Empty sticker to clone from #}
 
         <div class="sticker-empty sticker-outer">
             <div class="sticker panel panel-primary" data-id="0" no-description no-color>
@@ -51,46 +55,7 @@
 
     {% else %}
 
-        <div class="container">
-
-            <div class="col-md-6">
-
-                <div class="panel panel-primary">
-                    
-                    <div class="panel-heading" style="font-size: larger">Login</div>
-
-                    <div class="panel-body" style="padding: 3em">
-                        <form onsubmit="Sticker.Ajax.login(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
-                            <input class="form-control" placeholder="Username..." name="username" type="text" autocomplete="off">
-                            <input class="form-control" placeholder="Password..." name="password" type="password" autocomplete="off">
-                            <input type="submit" class="btn btn-primary" value="Login">
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-                
-                <div class="panel panel-success">
-                    
-                    <div class="panel-heading" style="font-size: larger">Register</div>
-
-                    <div class="panel-body" style="padding: 3em">
-                        <form onsubmit="Sticker.Ajax.register(event, this, '{% url 'stickers:index' %}')" style="padding: 10px">
-                            <input class="form-control" placeholder="Username..." name="username" type="text"     autocomplete="off">
-                            <input class="form-control" placeholder="Email..."    name="email"    type="email"    autocomplete="off">
-                            <input class="form-control" placeholder="Password..." name="password" type="password" autocomplete="off">
-                            <input type="submit" class="btn btn-success" value="Register">
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        {% include "stickers/include/authenticate.html" %}
 
     {% endif %}
 
